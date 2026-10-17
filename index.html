@@ -1,0 +1,828 @@
+
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#07111f">
+<title>برای زهرا | A Rare Kind of Magic</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap');
+
+:root{
+  --bg:#050b16;
+  --navy:#09182a;
+  --blue:#66caff;
+  --ice:#c7f0ff;
+  --purple:#a98bff;
+  --pink:#ff9ed8;
+  --glass:rgba(154,204,255,.075);
+  --line:rgba(183,224,255,.15);
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family:'Vazirmatn',Tahoma,sans-serif;
+  background:var(--bg);
+  color:#f1f7ff;
+  overflow-x:hidden;
+}
+button{font-family:inherit;cursor:pointer}
+a{color:inherit;text-decoration:none}
+::selection{background:#79cfff;color:#06101c}
+
+#stars{
+  position:fixed;inset:0;width:100%;height:100%;
+  z-index:-3;pointer-events:none;
+}
+.aurora{
+  position:fixed;inset:-30%;z-index:-2;pointer-events:none;
+  background:
+    radial-gradient(ellipse at 20% 25%,#12518b30,transparent 38%),
+    radial-gradient(ellipse at 80% 40%,#7453b629,transparent 38%),
+    radial-gradient(ellipse at 50% 90%,#0c96ae19,transparent 40%);
+  filter:blur(35px);
+  animation:aurora 15s ease-in-out infinite alternate;
+}
+@keyframes aurora{
+  from{transform:translate3d(-2%,0,0) rotate(-5deg)}
+  to{transform:translate3d(3%,2%,0) rotate(6deg)}
+}
+.noise{
+  position:fixed;inset:0;z-index:10;pointer-events:none;opacity:.12;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.18'/%3E%3C/svg%3E");
+}
+header{
+  position:fixed;top:12px;left:4%;right:4%;z-index:30;
+  display:flex;justify-content:space-between;align-items:center;gap:12px;
+  padding:12px 20px;border:1px solid var(--line);
+  border-radius:22px;background:#081323c9;
+  backdrop-filter:blur(22px);
+  box-shadow:0 10px 40px #0003;
+}
+.brand{font-weight:900;letter-spacing:1px;color:var(--ice)}
+.brand span{color:var(--blue)}
+nav{display:flex;gap:20px;align-items:center}
+nav a{font-size:12px;color:#c1d4e9;transition:.25s}
+nav a:hover{color:var(--blue)}
+.nav-btn,.btn{
+  border:1px solid #8ad7ff4c;border-radius:30px;
+  background:linear-gradient(135deg,#80d5ff24,#a88bff17);
+  color:white;padding:11px 19px;transition:.3s;
+}
+.nav-btn:hover,.btn:hover{
+  transform:translateY(-3px);
+  box-shadow:0 10px 35px #48baff26;
+  border-color:#8bd8ff9c;
+}
+section{padding:100px 7%;position:relative}
+.hero{
+  min-height:100svh;display:flex;align-items:center;justify-content:center;
+  text-align:center;overflow:hidden;padding-top:125px;
+}
+.hero-content{max-width:950px;position:relative;z-index:2}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:9px;
+  border:1px solid var(--line);border-radius:30px;
+  padding:8px 16px;color:#b9e7ff;font-size:12px;
+  background:#8acfff0a;backdrop-filter:blur(10px);
+}
+.pulse{
+  width:7px;height:7px;border-radius:50%;background:#83e7ff;
+  box-shadow:0 0 16px #83e7ff;animation:pulse 1.7s infinite;
+}
+@keyframes pulse{50%{opacity:.3;transform:scale(.65)}}
+h1{
+  font-size:clamp(48px,10vw,112px);line-height:1.22;
+  margin:27px 0 18px;font-weight:900;letter-spacing:-3px;
+}
+.gradient-text{
+  background:linear-gradient(110deg,#fff 5%,#a4e6ff 35%,#b6a4ff 65%,#ffc4e8 95%);
+  background-size:200% auto;
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  animation:shine 7s linear infinite;
+}
+@keyframes shine{to{background-position:200% center}}
+.hero p{color:#b2c5dc;line-height:2.3;font-size:clamp(14px,2vw,18px);max-width:640px;margin:0 auto}
+.hero-actions{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:32px}
+.btn-primary{
+  background:linear-gradient(120deg,#5cbfff,#9d91ff);
+  border:0;color:#06111e;font-weight:800;
+  box-shadow:0 0 35px #5dbfff28;
+}
+.hero-art{
+  height:240px;display:grid;place-items:center;perspective:900px;
+  margin:18px auto 0;
+}
+.orbit{
+  width:205px;height:205px;border:1px solid #8edbff35;
+  border-radius:50%;position:relative;display:grid;place-items:center;
+  transform-style:preserve-3d;animation:float 6s ease-in-out infinite;
+  box-shadow:inset 0 0 45px #50baff08,0 0 65px #6ebfff0b;
+}
+.orbit:before,.orbit:after{
+  content:"";position:absolute;inset:18px;border:1px solid #bda9ff37;
+  border-radius:50%;transform:rotateX(68deg) rotateZ(35deg);
+}
+.orbit:after{inset:0;transform:rotateY(67deg) rotateZ(-25deg);border-color:#72d9ff48}
+.gem{
+  font-size:72px;filter:drop-shadow(0 0 22px #8fdcff88);
+  animation:gem 4s ease-in-out infinite;
+}
+@keyframes float{50%{transform:translateY(-12px) rotateY(10deg)}}
+@keyframes gem{50%{transform:scale(1.09) rotate(5deg)}}
+.orbit-dot{
+  position:absolute;width:11px;height:11px;border-radius:50%;
+  background:#b8eaff;box-shadow:0 0 22px #7bd4ff;
+  top:20px;left:25px;
+}
+.scroll-hint{font-size:11px;color:#7f9db9;margin-top:14px}
+.scroll-hint span{display:block;font-size:19px;animation:down 1.6s infinite}
+@keyframes down{50%{transform:translateY(5px)}}
+
+.section-head{text-align:center;max-width:760px;margin:0 auto 48px}
+.kicker{color:#85d9ff;font-size:12px;letter-spacing:2px;font-weight:700}
+.section-head h2{font-size:clamp(28px,5vw,49px);margin:14px 0}
+.section-head p{color:#a9bdd4;line-height:2.1;font-size:14px}
+.glass{
+  background:linear-gradient(135deg,#a3dfff0c,#9b8aff09);
+  border:1px solid var(--line);border-radius:25px;
+  backdrop-filter:blur(18px);
+  box-shadow:0 20px 80px #00018,inset 0 1px #ffffff08;
+}
+.features{
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:17px;
+}
+.feature{
+  padding:28px 23px;position:relative;overflow:hidden;
+  transition:transform .4s,border-color .4s;
+  transform-style:preserve-3d;
+}
+.feature:before{
+  content:"";position:absolute;width:130px;height:130px;
+  top:-75px;left:-45px;background:#58c8ff16;filter:blur(25px);border-radius:50%;
+}
+.feature:hover{border-color:#8bd8ff65;transform:translateY(-8px)}
+.iconbox{
+  width:57px;height:57px;display:grid;place-items:center;font-size:26px;
+  border-radius:18px;border:1px solid #a6dfff30;
+  background:linear-gradient(140deg,#80d8ff22,#9f91ff19);
+  box-shadow:inset 0 1px #fff1,0 10px 30px #0002;
+  margin-bottom:22px;
+}
+.feature h3{font-size:18px;margin:0 0 12px}
+.feature p{color:#9eb4cc;font-size:13px;line-height:2.2;margin:0}
+.tag{display:inline-block;font-size:10px;color:#a5e4ff;margin-top:18px}
+
+.love-section{
+  background:linear-gradient(180deg,transparent,#101c321c,transparent);
+}
+.love-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:stretch}
+.love-card{padding:clamp(24px,4vw,43px);position:relative;overflow:hidden}
+.love-card h3{font-size:25px;margin:12px 0}
+.love-card p{color:#b1c4db;font-size:14px;line-height:2.5}
+.big-quote{
+  font-size:clamp(23px,4vw,38px);line-height:2;
+  font-weight:800;color:#e3f6ff;
+}
+.quote-mark{font-size:65px;color:#82d5ff44;line-height:.8}
+.love-card small{color:#7d9bb8}
+.number{font-size:58px;font-weight:900;color:#b9e9ff}
+.stat-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:20px}
+.stat{
+  border:1px solid var(--line);border-radius:19px;padding:18px;
+  background:#a4dfff07;
+}
+.stat strong{display:block;font-size:23px;color:#b9e8ff}
+.stat span{font-size:11px;color:#8fa9c3}
+
+.timeline{max-width:800px;margin:auto;position:relative}
+.timeline:before{
+  content:"";position:absolute;right:17px;top:10px;bottom:10px;width:1px;
+  background:linear-gradient(transparent,#7ed4ff70,#b5a3ff65,transparent);
+}
+.timeline-item{position:relative;padding:0 53px 30px 0}
+.timeline-dot{
+  position:absolute;right:9px;top:9px;width:17px;height:17px;
+  background:#9de5ff;border-radius:50%;border:4px solid #10253b;
+  box-shadow:0 0 20px #72d4ff77;
+}
+.timeline-card{padding:22px 24px}
+.timeline-card h3{margin:0 0 8px;font-size:16px}
+.timeline-card p{margin:0;color:#a5bad2;font-size:13px;line-height:2.2}
+
+.game-box{padding:clamp(20px,5vw,48px);text-align:center;overflow:hidden}
+.game-box h3{font-size:26px;margin:0 0 12px}
+.game-box p{color:#9db4ce;font-size:13px;line-height:2}
+#heartGame{
+  display:grid;grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:10px;max-width:490px;margin:27px auto;
+}
+.game-cell{
+  min-height:90px;border-radius:18px;border:1px solid #8fcfff26;
+  background:linear-gradient(145deg,#10273d,#11172d);
+  color:#c5eaff;font-size:29px;
+  box-shadow:inset 0 1px #ffffff0b;
+  transition:.3s;transform-style:preserve-3d;
+}
+.game-cell:hover{transform:translateY(-3px);border-color:#83d6ff80}
+.game-cell.revealed{background:linear-gradient(145deg,#193c56,#282448);animation:reveal .35s ease}
+@keyframes reveal{from{transform:rotateY(90deg)}to{transform:rotateY(0)}}
+.game-status{color:#9ee3ff!important;min-height:28px}
+.game-result{color:#ffe0f4;font-size:15px;margin:15px 0;min-height:24px}
+
+.qualities{
+  display:flex;justify-content:center;flex-wrap:wrap;gap:11px;margin-top:25px
+}
+.quality{
+  padding:11px 17px;border:1px solid #a0d9ff27;border-radius:40px;
+  color:#c4e9ff;background:#b2dfff08;font-size:12px;
+  transition:.3s;
+}
+.quality:hover{transform:translateY(-4px);background:#6bbfff18}
+.generator{text-align:center;padding:35px 20px}
+.message-display{
+  min-height:105px;display:grid;place-items:center;
+  max-width:650px;margin:25px auto;
+  font-size:clamp(17px,3vw,25px);line-height:2;
+  color:#e3f5ff;transition:opacity .25s;
+}
+.surprise-btn{font-size:14px;padding:14px 25px}
+
+.letter-wrap{max-width:760px;margin:auto;perspective:1000px}
+.letter{
+  padding:clamp(25px,6vw,55px);
+  background:linear-gradient(145deg,#101f33,#0b1525);
+  border:1px solid #b2ddff28;border-radius:28px;
+  box-shadow:0 30px 100px #0004,inset 0 1px #ffffff0a;
+  position:relative;overflow:hidden;
+}
+.letter:after{
+  content:"";position:absolute;width:220px;height:220px;left:-100px;bottom:-130px;
+  border-radius:50%;background:#69caff12;filter:blur(20px);
+}
+.letter-label{font-size:11px;color:#91dfff;letter-spacing:2px}
+.letter h3{font-size:29px;margin:22px 0}
+.letter p{color:#c2d1e4;line-height:2.7;font-size:14px;position:relative;z-index:1}
+.signature{font-size:24px;font-weight:800;color:#b4e8ff;margin-top:25px}
+.final-heart{
+  display:inline-block;font-size:33px;margin-top:12px;
+  animation:heart 1.5s infinite;filter:drop-shadow(0 0 12px #ff94d6);
+}
+@keyframes heart{50%{transform:scale(1.22)}}
+
+footer{
+  padding:45px 20px 35px;text-align:center;
+  border-top:1px solid #9bd8ff14;
+}
+footer .brand{font-size:19px}
+footer p{font-size:12px;color:#7e96b2;line-height:2}
+.back-top{
+  position:fixed;bottom:20px;left:20px;z-index:25;
+  width:44px;height:44px;border-radius:15px;
+  border:1px solid var(--line);background:#0b1a2adf;
+  color:#c5ecff;font-size:19px;backdrop-filter:blur(15px);
+}
+#toast{
+  position:fixed;z-index:60;bottom:80px;left:50%;
+  transform:translate(-50%,20px);opacity:0;pointer-events:none;
+  padding:13px 22px;border:1px solid #9adfff50;
+  border-radius:30px;background:#10263a;color:#e2f6ff;
+  font-size:13px;transition:.3s;white-space:nowrap;
+}
+#toast.show{opacity:1;transform:translate(-50%,0)}
+.confetti-heart{
+  position:fixed;z-index:50;pointer-events:none;
+  animation:fly 2.8s ease-out forwards;
+}
+@keyframes fly{
+  0%{transform:translateY(0) rotate(0) scale(.6);opacity:0}
+  10%{opacity:1}
+  100%{transform:translateY(-100vh) rotate(500deg) scale(1.5);opacity:0}
+}
+.reveal-on-scroll{opacity:0;transform:translateY(25px);transition:opacity .8s,transform .8s}
+.reveal-on-scroll.visible{opacity:1;transform:translateY(0)}
+
+@media(min-width:1200px){
+  section{padding-left:max(7%,calc((100% - 1180px)/2));padding-right:max(7%,calc((100% - 1180px)/2))}
+}
+@media(max-width:760px){
+  header{top:7px;left:3%;right:3%;padding:11px 13px}
+  nav{gap:10px}
+  nav a{font-size:10px}
+  .brand{font-size:13px}
+  .nav-btn{padding:9px 11px;font-size:11px}
+  section{padding:78px 5%}
+  .hero{padding-top:105px}
+  h1{letter-spacing:-1.5px}
+  .hero-art{height:210px}
+  .orbit{width:175px;height:175px}
+  .features{grid-template-columns:1fr 1fr;gap:11px}
+  .feature{padding:20px 16px}
+  .feature h3{font-size:15px}
+  .feature p{font-size:12px}
+  .iconbox{width:47px;height:47px;font-size:22px}
+  .love-grid{grid-template-columns:1fr}
+  .timeline-item{padding-right:43px}
+  .game-cell{min-height:75px}
+}
+@media(max-width:390px){
+  nav{gap:7px}
+  nav a{font-size:9px}
+  .nav-btn{padding:8px}
+  .features{grid-template-columns:1fr}
+  .game-cell{min-height:65px}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}
+}
+</style>
+</head>
+
+<body>
+<canvas id="stars"></canvas>
+<div class="aurora"></div>
+<div class="noise"></div>
+
+<header>
+  <a href="#home" class="brand">ZAHRA<span>✦</span></a>
+  <nav>
+    <a href="#about">درباره تو</a>
+    <a href="#magic">جادوی تو</a>
+    <a href="#game">سرگرمی</a>
+    <a href="#letter">نامه</a>
+  </nav>
+  <button class="nav-btn" onclick="showSurprise()">یه سورپرایز ✧</button>
+</header>
+
+<main>
+<section class="hero" id="home">
+  <div class="hero-content">
+    <div class="eyebrow"><span class="pulse"></span> A LITTLE UNIVERSE MADE FOR YOU</div>
+
+    <h1>
+      بعضی آدما<br>
+      <span class="gradient-text">شبیه هیچ‌کس نیستن.</span>
+    </h1>
+
+    <p>
+      و تو زهرا، دقیقاً یکی از همون آدمایی.
+      اینجا یه گوشه‌ی کوچیک از دنیامه که ساختم
+      تا بهت بگم بودنت چقدر قشنگه؛
+      حتی وقتی فاصله بینمون زیاده. 💙
+    </p>
+
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="#about">بیا دنیای خودتو ببین ✨</a>
+      <button class="btn" onclick="releaseHearts()">بزن بریم عشق و انرژی 💗</button>
+    </div>
+
+    <div class="hero-art">
+      <div class="orbit">
+        <div class="orbit-dot"></div>
+        <div class="gem">💎</div>
+      </div>
+    </div>
+    <div class="scroll-hint">یه دنیای کوچیک برای یه آدم خاص <span>⌄</span></div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="section-head reveal-on-scroll">
+    <div class="kicker">01 — THE WAY YOU ARE</div>
+    <h2>زهرا، می‌دونی چی تو رو <span class="gradient-text">متفاوت می‌کنه؟</span></h2>
+    <p>
+      قشنگی آدما فقط به چیزایی که دیده می‌شن نیست.
+      بعضیا یه جوری توی دل آدم جا می‌گیرن که حتی کیلومترها فاصله هم
+      نمی‌تونه ارزش بودنشون رو کم کنه.
+    </p>
+  </div>
+
+  <div class="features">
+    <article class="glass feature reveal-on-scroll">
+      <div class="iconbox">🫶🏻</div>
+      <h3>قلب مهربونت</h3>
+      <p>از اون مهربونی‌هایی که فقط حرف نیست؛ توی رفتارت معلومه. از اونایی که آدم باهاش احساس می‌کنه تنها نیست.</p>
+      <span class="tag">A HEART OF GOLD ✦</span>
+    </article>
+
+    <article class="glass feature reveal-on-scroll">
+      <div class="iconbox">🌙</div>
+      <h3>بودنت، حتی از دور</h3>
+      <p>شاید همیشه نزدیک نباشی، ولی همین که هوای آدم رو داری، فاصله رو یه جورایی کوچیک‌تر می‌کنه.</p>
+      <span class="tag">DISTANCE IS JUST DISTANCE</span>
+    </article>
+
+    <article class="glass feature reveal-on-scroll">
+      <div class="iconbox">🦋</div>
+      <h3>خاص بودنِ خودت</h3>
+      <p>لازم نیست شبیه کسی باشی یا خودتو ثابت کنی. چیزی که تو رو قشنگ می‌کنه، همون خودِ واقعیته.</p>
+      <span class="tag">ONE OF ONE</span>
+    </article>
+
+    <article class="glass feature reveal-on-scroll">
+      <div class="iconbox">☁️</div>
+      <h3>حس خوبت</h3>
+      <p>بعضی آدما بدون اینکه کار عجیب‌وغریبی بکنن، حال آدم رو بهتر می‌کنن. تو برای من از همون آدمایی.</p>
+      <span class="tag">SOFT ENERGY</span>
+    </article>
+
+    <article class="glass feature reveal-on-scroll">
+      <div class="iconbox">💫</div>
+      <h3>ارزش وجودت</h3>
+      <p>ارزش تو به کارایی که برای بقیه می‌کنی محدود نیست. خودت، احساساتت و خوشحالیت هم به همون اندازه مهمن.</p>
+      <span class="tag">YOU MATTER</span>
+    </article>
+
+    <article class="glass feature reveal-on-scroll">
+      <div class="iconbox">🩵</div>
+      <h3>خاطره‌ای که می‌مونه</h3>
+      <p>آدم بعضی مهربونی‌ها رو فراموش نمی‌کنه. شاید کوچیک به نظر بیان، ولی اثرشون خیلی بیشتر از چیزیه که فکر می‌کنی.</p>
+      <span class="tag">NEVER ORDINARY</span>
+    </article>
+  </div>
+</section>
+
+<section class="love-section" id="magic">
+  <div class="section-head reveal-on-scroll">
+    <div class="kicker">02 — YOUR KIND OF MAGIC</div>
+    <h2>یه چیزایی درباره تو هست که <span class="gradient-text">باید گفته بشه.</span></h2>
+    <p>نه برای اینکه ازت یه آدم بی‌نقص بسازم؛ برای اینکه خوبی‌هات دیده بشن.</p>
+  </div>
+
+  <div class="love-grid">
+    <article class="glass love-card reveal-on-scroll">
+      <div class="quote-mark">“</div>
+      <div class="big-quote">
+        بعضیا فقط وارد زندگی آدم نمی‌شن؛
+        یه جای قشنگ توی قلبش برا خودشون می‌سازن.
+      </div>
+      <p>تو از اون آدمایی هستی که مهربونیشون می‌تونه مدت‌ها توی ذهن آدم بمونه.</p>
+      <small>A NOTE JUST FOR ZAHRA · ✦</small>
+    </article>
+
+    <article class="glass love-card reveal-on-scroll">
+      <div class="kicker">THE LITTLE THINGS</div>
+      <h3>چیزایی که شاید خودت ندونی</h3>
+      <p>
+        شاید ندونی وقتی هوای کسی رو داری، چقدر بهش دلگرمی می‌دی.
+        شاید ندونی یه پیام ساده یا یه رفتار مهربونانه چقدر می‌تونه
+        روز یکی رو عوض کنه.
+      </p>
+      <p>
+        من این چیزا رو می‌بینم، زهرا. ممنونم که با وجود فاصله،
+        انقدر با محبت بودی و نشون دادی هنوز آدمای با معرفت وجود دارن.
+      </p>
+      <div class="stat-row">
+        <div class="stat"><strong>∞</strong><span>ارزش مهربونی تو</span></div>
+        <div class="stat"><strong>01</strong><span>نسخه از خودت؛ همون کافی و خاص</span></div>
+      </div>
+    </article>
+  </div>
+
+  <div class="qualities reveal-on-scroll" style="margin-top:28px">
+    <span class="quality">🩵 مهربون</span>
+    <span class="quality">🌷 با معرفت</span>
+    <span class="quality">✨ دوست‌داشتنی</span>
+    <span class="quality">🦋 منحصربه‌فرد</span>
+    <span class="quality">🌙 ارزشمند</span>
+    <span class="quality">💎 کمیاب</span>
+    <span class="quality">☁️ دلگرم‌کننده</span>
+    <span class="quality">🫧 دوست‌داشتنی، همین‌جوری که هستی</span>
+  </div>
+</section>
+
+<section id="memories">
+  <div class="section-head reveal-on-scroll">
+    <div class="kicker">03 — A LITTLE REMINDER</div>
+    <h2>سه تا چیز که می‌خوام <span class="gradient-text">یادت بمونه.</span></h2>
+    <p>این قسمت رو هر وقت دلت گرفت، یه بار دیگه بخون. 💙</p>
+  </div>
+
+  <div class="timeline">
+    <div class="timeline-item reveal-on-scroll">
+      <span class="timeline-dot"></span>
+      <article class="glass timeline-card">
+        <h3>✦ تو لازم نیست همیشه قوی باشی.</h3>
+        <p>تو هم حق داری خسته بشی، ناراحت بشی، سکوت کنی و به خودت استراحت بدی. قرار نیست همیشه حال همه رو خوب کنی.</p>
+      </article>
+    </div>
+    <div class="timeline-item reveal-on-scroll">
+      <span class="timeline-dot"></span>
+      <article class="glass timeline-card">
+        <h3>✦ فاصله، ارزش آدما رو تعیین نمی‌کنه.</h3>
+        <p>گاهی یکی از دور بیشتر از خیلی آدمای نزدیک حواسش به توئه. محبت رو کیلومتری اندازه نمی‌گیرن.</p>
+      </article>
+    </div>
+    <div class="timeline-item reveal-on-scroll">
+      <span class="timeline-dot"></span>
+      <article class="glass timeline-card">
+        <h3>✦ تو خودت هم سزاوار همون مهربونی‌ای.</h3>
+        <p>همون‌قدر که برای بقیه وقت و انرژی می‌ذاری، برای خودت هم ارزش قائل باش. تو فقط به خاطر کمک کردنت دوست‌داشتنی نیستی؛ خودت ارزشمندی.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="game">
+  <div class="section-head reveal-on-scroll">
+    <div class="kicker">04 — A LITTLE PLAYGROUND</div>
+    <h2>بازی کوچولوی <span class="gradient-text">ستاره‌های زهرا</span> 🎮</h2>
+    <p>کارت‌ها رو باز کن و جفت ستاره‌های جادویی رو پیدا کن. ببین می‌تونی هر ۸ کارت رو با کمترین حرکت جور کنی یا نه!</p>
+  </div>
+
+  <div class="glass game-box reveal-on-scroll">
+    <h3>✧ Find Your Stars ✧</h3>
+    <p>۸ کارت، ۴ جفت مخفی. حافظه‌تو به چالش بکش!</p>
+    <div id="heartGame"></div>
+    <p class="game-status" id="gameStatus">آماده‌ای؟ اولین کارت رو باز کن! 💫</p>
+    <p class="game-result" id="gameResult"></p>
+    <button class="btn btn-primary" onclick="startGame()">از اول بازی کنیم ↻</button>
+  </div>
+</section>
+
+<section id="compliment">
+  <div class="section-head reveal-on-scroll">
+    <div class="kicker">05 — RANDOM LOVE GENERATOR</div>
+    <h2>یه تعریف شانسی برای <span class="gradient-text">خانم زهرا</span> 💌</h2>
+    <p>هر بار دکمه رو بزنی، یه پیام جدید از این دنیای کوچیک برات ظاهر می‌شه.</p>
+  </div>
+
+  <div class="glass generator reveal-on-scroll">
+    <div style="font-size:37px">🔮</div>
+    <div class="message-display" id="randomMessage">زهرا، آماده‌ای یه تعریف کوچولو بشنوی؟</div>
+    <button class="btn btn-primary surprise-btn" onclick="newMessage()">پیام بعدی رو نشونم بده ✨</button>
+    <br><br>
+    <button class="btn" onclick="copyMessage()">این پیامو کپی کن ♡</button>
+  </div>
+</section>
+
+<section id="letter">
+  <div class="section-head reveal-on-scroll">
+    <div class="kicker">06 — OPEN WHENEVER YOU NEED</div>
+    <h2>یه نامه از طرف <span class="gradient-text">من، برای تو.</span></h2>
+    <p>این بخش از همه مهم‌تره؛ چون حرفای قشنگ، وقتی از دل باشن، ارزش دارن.</p>
+  </div>
+
+  <div class="letter-wrap reveal-on-scroll">
+    <article class="letter">
+      <div class="letter-label">A LETTER FOR ZAHRA · WITH LOVE</div>
+      <h3>زهرا جان، 💙</h3>
+
+      <p>
+        نمی‌دونم چقدر بهت گفتم که چقدر برام ارزشمندی، برای همین خواستم
+        یه جای کوچیک بسازم که این حرفا توش بمونه.
+      </p>
+
+      <p>
+        تو با مهربونی‌هات و اینکه با وجود دوری هوامو داشتی،
+        بهم نشون دادی که برای خوب بودن لازم نیست همیشه کنار هم باشیم.
+        بعضی آدما با رفتارشون ثابت می‌کنن که واقعاً معرفت هنوز وجود داره.
+        من این محبتت رو می‌بینم و بابتش ازت ممنونم.
+      </p>
+
+      <p>
+        می‌خوام بدونی که من واقعاً دوستت دارم و بودنت برام مهمه.
+        نه به خاطر اینکه همیشه خوبی یا همیشه کمک می‌کنی؛
+        به خاطر خودت، قلب مهربونت و آدم قشنگی که هستی.
+      </p>
+
+      <p>
+        امیدوارم زندگی هزار برابر بیشتر از اون چیزی که به بقیه محبت می‌کنی،
+        به خودت محبت برگردونه. امیدوارم بخندی، به آرزوهات برسی،
+        آدمای خوب دور و برت باشن و هیچ‌وقت ارزش خودت رو فراموش نکنی.
+      </p>
+
+      <p>
+        شاید نتونم همه حس خوبم رو توی چندتا جمله جا بدم،
+        ولی می‌تونم اینو بگم: خوشحالم که تو رو دارم.
+        ممنون که خودتی، زهرا. 🩵
+      </p>
+
+      <div class="signature">با کلی عشق و قدردانی، از طرف من ♡</div>
+      <div class="final-heart">💗</div>
+    </article>
+  </div>
+</section>
+
+<section style="padding-top:45px;padding-bottom:100px">
+  <div class="glass generator reveal-on-scroll">
+    <div class="kicker">ONE LAST THING</div>
+    <h2 style="font-size:clamp(27px,5vw,43px);line-height:1.7">
+      دنیا به آدمای <span class="gradient-text">مهربونی مثل تو</span> نیاز داره.
+    </h2>
+    <p style="color:#a7bdd4;line-height:2.4;font-size:14px">
+      این سایت فقط چند خط کده؛ ولی دلیل ساختنش یه حس واقعیه:
+      اینکه یکی هست که می‌خواد بدونه چقدر برات ارزش قائله.
+    </p>
+    <button class="btn btn-primary surprise-btn" onclick="finale()">یه عالمه قلب برای زهرا 💗</button>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="brand">ZAHRA <span>✦</span></div>
+  <p>Made with love, kindness & a little bit of magic.<br>
+  برای یکی از خاص‌ترین آدم‌های این دنیا. 💙</p>
+  <small style="color:#526d88">THIS LITTLE UNIVERSE IS YOURS ✧</small>
+</footer>
+
+<button class="back-top" aria-label="رفتن به بالا" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+<div id="toast"></div>
+
+<script>
+// آسمان متحرک با ستاره‌های درخشان
+const canvas=document.getElementById('stars');
+const ctx=canvas.getContext('2d');
+let stars=[],w=0,h=0;
+function resize(){
+  const dpr=Math.min(window.devicePixelRatio||1,2);
+  w=window.innerWidth;h=window.innerHeight;
+  canvas.width=w*dpr;canvas.height=h*dpr;
+  canvas.style.width=w+'px';canvas.style.height=h+'px';
+  ctx.setTransform(dpr,0,0,dpr,0,0);
+  stars=Array.from({length:Math.min(150,Math.floor(w/7))},()=>({
+    x:Math.random()*w,y:Math.random()*h,
+    r:Math.random()*1.4+.25,
+    a:Math.random()*.65+.15,
+    speed:Math.random()*.006+.002,
+    phase:Math.random()*6.28,
+    drift:(Math.random()-.5)*.12
+  }));
+}
+function drawStars(t){
+  ctx.clearRect(0,0,w,h);
+  for(const s of stars){
+    const a=s.a*(.6+.4*Math.sin(t*s.speed+s.phase));
+    ctx.beginPath();ctx.arc(s.x,s.y,s.r,0,Math.PI*2);
+    ctx.fillStyle=`rgba(175,220,255,${a})`;ctx.fill();
+    s.y-=.035;s.x+=s.drift;
+    if(s.y<0)s.y=h;
+    if(s.x<0)s.x=w;if(s.x>w)s.x=0;
+  }
+  requestAnimationFrame(drawStars);
+}
+resize();requestAnimationFrame(drawStars);
+window.addEventListener('resize',resize);
+
+// نمایش تدریجی بخش‌ها
+const observer=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.classList.add('visible');
+      observer.unobserve(e.target);
+    }
+  });
+},{threshold:.12});
+document.querySelectorAll('.reveal-on-scroll').forEach(el=>observer.observe(el));
+
+// پیام‌های شانسی
+const messages=[
+'زهرا، مهربونی تو از اون چیزاست که آدم دلش می‌خواد دنیا بیشتر ازش داشته باشه. 🩵',
+'تو لازم نیست شبیه هیچ‌کس باشی؛ نسخه‌ی خودت بودن قشنگ‌ترین چیزته. 🦋',
+'یه آدم می‌تونه از دور هم حال یکی رو خوب کنه؛ تو اینو ثابت کردی. 🌙',
+'امیدوارم یه روز به اندازه‌ی تمام وقتایی که هوای بقیه رو داشتی، یکی هوای تو رو داشته باشه. 🫶🏻',
+'خاص بودن یعنی وقتی اسم یه نفر میاد، یه حس خوب همراهش بیاد. برای من تو این‌جوری‌ای. ✨',
+'زهرا جان، تو فقط برای کارای خوبی که می‌کنی ارزشمند نیستی؛ خودت به‌تنهایی ارزشمندی. 💎',
+'امیدوارم همیشه به خودت افتخار کنی؛ حتی روزایی که فکر می‌کنی کار خاصی نکردی. 🌷',
+'فاصله نمی‌تونه مهربونی واقعی رو کم‌رنگ کنه. ممنون که هستی. 💙',
+'اگه مهربونی یه رنگ بود، احتمالاً یه آبی آروم و قشنگ بود که آدم دلش نمی‌خواست ازش بیرون بیاد. 🩵',
+'دنیا لازم نیست بی‌نقص باشه؛ همین که آدمایی مثل تو توش هستن، یه دلیل برای قشنگ‌تر دیدنش داریم. 🌌',
+'تو از اون آدمایی هستی که بودنشون رو نباید بدیهی فرض کرد. قدر خودتو بدون. 💗',
+'این پیام یه یادآوری کوچیکه: زهرا، تو هم لایق تمام عشق و آرامشی هستی که به بقیه می‌دی. ☁️'
+];
+let lastMessage=-1;
+function newMessage(){
+  let i;
+  do{i=Math.floor(Math.random()*messages.length)}while(i===lastMessage);
+  lastMessage=i;
+  const el=document.getElementById('randomMessage');
+  el.style.opacity=0;
+  setTimeout(()=>{
+    el.textContent=messages[i];
+    el.style.opacity=1;
+  },200);
+}
+function copyMessage(){
+  const text=document.getElementById('randomMessage').textContent;
+  if(navigator.clipboard&&window.isSecureContext){
+    navigator.clipboard.writeText(text).then(()=>toast('پیام قشنگت کپی شد 💙'))
+    .catch(()=>fallbackCopy(text));
+  }else fallbackCopy(text);
+}
+function fallbackCopy(text){
+  const ta=document.createElement('textarea');
+  ta.value=text;ta.style.position='fixed';ta.style.opacity='0';
+  document.body.appendChild(ta);ta.select();
+  try{document.execCommand('copy');toast('پیام کپی شد 💙')}
+  catch(e){toast('متن رو لمس کن و کپی کن ♡')}
+  ta.remove();
+}
+
+// بازی حافظه
+const symbols=['💎','🌙','🦋','🪐'];
+let deck=[],first=null,lock=false,moves=0,matches=0;
+function startGame(){
+  deck=[...symbols,...symbols].sort(()=>Math.random()-.5);
+  first=null;lock=false;moves=0;matches=0;
+  document.getElementById('gameStatus').textContent='آماده‌ای؟ اولین کارت رو باز کن! 💫';
+  document.getElementById('gameResult').textContent='';
+  const game=document.getElementById('heartGame');
+  game.innerHTML='';
+  deck.forEach((symbol,i)=>{
+    const b=document.createElement('button');
+    b.className='game-cell';b.textContent='✦';
+    b.setAttribute('aria-label','کارت مخفی');
+    b.addEventListener('click',()=>flipCard(b,i));
+    game.appendChild(b);
+  });
+}
+function flipCard(btn,i){
+  if(lock||btn.classList.contains('revealed')||btn.dataset.matched)return;
+  btn.classList.add('revealed');
+  btn.textContent=deck[i];
+  btn.setAttribute('aria-label','کارت '+deck[i]);
+  if(!first){first={btn,i};return}
+  moves++;
+  if(deck[first.i]===deck[i]){
+    first.btn.dataset.matched='true';
+    btn.dataset.matched='true';
+    matches++;
+    first=null;
+    document.getElementById('gameStatus').textContent='آفرین! یه جفت پیدا کردی ✨';
+    if(matches===symbols.length){
+      document.getElementById('gameStatus').textContent='تموم شد! تو همه‌ی جفت‌ها رو پیدا کردی! 🏆';
+      document.getElementById('gameResult').textContent=`با ${moves} حرکت تمومش کردی. توی دنیای زهرا، تو برنده‌ای! 💙`;
+      releaseHearts(16);
+    }
+  }else{
+    const previous=first;
+    first=null;lock=true;
+    document.getElementById('gameStatus').textContent='این دوتا یکی نیستن؛ دوباره امتحان کن! 🪄';
+    setTimeout(()=>{
+      previous.btn.classList.remove('revealed');
+      previous.btn.textContent='✦';
+      previous.btn.setAttribute('aria-label','کارت مخفی');
+      btn.classList.remove('revealed');
+      btn.textContent='✦';
+      btn.setAttribute('aria-label','کارت مخفی');
+      lock=false;
+    },800);
+  }
+}
+startGame();
+
+// قلب‌های شناور
+function releaseHearts(count=24){
+  const emojis=['💙','🩵','💗','✨','💖','🦋'];
+  for(let i=0;i<count;i++){
+    setTimeout(()=>{
+      const el=document.createElement('span');
+      el.className='confetti-heart';
+      el.textContent=emojis[Math.floor(Math.random()*emojis.length)];
+      el.style.left=Math.random()*100+'vw';
+      el.style.top=(65+Math.random()*30)+'vh';
+      el.style.fontSize=(16+Math.random()*24)+'px';
+      el.style.animationDuration=(2+Math.random()*2)+'s';
+      document.body.appendChild(el);
+      setTimeout(()=>el.remove(),4500);
+    },i*65);
+  }
+}
+function showSurprise(){
+  newMessage();
+  document.getElementById('compliment').scrollIntoView({behavior:'smooth'});
+  setTimeout(()=>releaseHearts(12),400);
+}
+function finale(){
+  releaseHearts(45);
+  toast('زهرا جان، تو واقعاً ارزشمندی! 💙');
+}
+let toastTimer;
+function toast(msg){
+  const el=document.getElementById('toast');
+  el.textContent=msg;el.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer=setTimeout(()=>el.classList.remove('show'),2400);
+}
+
+// افکت سه‌بعدی ملایم برای کارت‌ها در دستگاه‌های دارای ماوس
+if(window.matchMedia('(hover:hover) and (pointer:fine)').matches){
+  document.querySelectorAll('.feature').forEach(card=>{
+    card.addEventListener('mousemove',e=>{
+      const r=card.getBoundingClientRect();
+      const x=(e.clientX-r.left)/r.width-.5;
+      const y=(e.clientY-r.top)/r.height-.5;
+      card.style.transform=`perspective(800px) rotateY(${x*5}deg) rotateX(${-y*5}deg) translateY(-5px)`;
+    });
+    card.addEventListener('mouseleave',()=>{
+      card.style.transform='';
+    });
+  });
+}
+</script>
+</body>
+</html>
